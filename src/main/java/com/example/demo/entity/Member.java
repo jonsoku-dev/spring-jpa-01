@@ -19,11 +19,18 @@ public class Member {
     private int age;
 
 
-    @ManyToOne
+    // xToOne -> 무조건 LAZY
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="team_id")
     private Team team;
 
-    public Member(String username) {  this.username = username; }
+    public Member(String username, int age, Team team) {
+        this.username = username;
+        this.age = age;
+        if(team != null) {
+            changeTeam(team);
+        }
+    }
 
     // 자신만 바꾸지않고, 반대쪽도 바꿔야하니 아래의 로직을 넣는다.
     public void changeTeam(Team team) {

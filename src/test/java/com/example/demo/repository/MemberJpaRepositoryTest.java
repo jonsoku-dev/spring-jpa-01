@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.entity.Member;
+import com.example.demo.entity.Team;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,9 @@ public class MemberJpaRepositoryTest {
 
     @Test
     public void testMember() {
-        Member member = new Member("memberA");
+        Team teamA = new Team("teamA");
+
+        Member member = new Member("memberA", 10, teamA);
         Member savedMember = memberJpaRepository.save(member);
         Member findMember = memberJpaRepository.find(savedMember.getId());
 
